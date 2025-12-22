@@ -2,33 +2,12 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Intern Log: The Unspoken</title>
-    
-    <meta property="og:title" content="Intern-Logs: The Unspoken">
-    <meta property="og:image" content="thumb (1).png">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status: Delivered</title>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 1. ANIMASI --- */
-        @keyframes bounce {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-5px); }
-        }
-        @keyframes floatCloud {
-            0% { left: -50px; }
-            100% { left: 120%; }
-        }
-        @keyframes blinker { 
-            50% { opacity: 0; } 
-        }
-        @keyframes fall { 
-            to { transform: translateY(110vh) rotate(360deg); } 
-        }
-
-        /* --- 2. SETTING DASAR (TEMA CERIA) --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* --- STYLE SIMPEL & CERIA --- */
         body {
             background-color: #ffefc1; /* Kuning Telur Lembut */
             font-family: 'VT323', monospace;
@@ -36,400 +15,82 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            margin: 0;
             color: #2d3436;
-            user-select: none;
         }
 
-        /* --- 3. CONTAINER GAMEBOY --- */
-        #game-device {
-            width: 95%;
-            max-width: 480px;
-            height: 90vh;
-            background: #ffffff; /* Body Putih Bersih */
-            border: 5px solid #ff7675; /* Border Coral Pink */
+        .card {
+            background: #ffffff;
+            padding: 40px 30px;
+            border: 5px solid #ff7675; /* Border Pink */
             border-radius: 20px;
-            box-shadow: 10px 10px 0px rgba(255, 118, 117, 0.3); /* Shadow Pink */
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* --- 4. LAYAR VISUAL (LANGIT BIRU) --- */
-        .visual-area {
-            height: 35%;
-            background: #74b9ff; /* Biru Langit Cerah */
-            position: relative;
-            border-bottom: 5px solid #ff7675;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* AWAN */
-        .cloud {
-            position: absolute;
-            top: 20px;
-            font-size: 3rem;
-            color: rgba(255,255,255, 0.8);
-            animation: floatCloud 15s linear infinite;
-            z-index: 1;
-        }
-
-        /* KARAKTER PIXEL (DEFAULT) */
-        .pixel-char {
-            width: 70px;
-            height: 70px;
-            background-color: #fdcb6e; /* Kuning Mustard Awal */
-            border: 4px solid #2d3436;
-            position: absolute; 
-            transition: top 0.3s, left 0.3s, background-color 0.3s; /* Smooth color change */
-            cursor: pointer;
-            z-index: 10;
-            box-shadow: inset -5px -5px 0 rgba(0,0,0,0.1);
-            animation: bounce 0.8s infinite alternate;
-            border-radius: 8px; /* Sedikit rounded biar cute */
-        }
-
-        .pixel-char::after {
-            content: 'OvO';
-            color: #2d3436;
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-            font-weight: bold;
-        }
-        
-        .tap-hint {
-            position: absolute;
-            top: 10px;
-            width: 100%;
             text-align: center;
-            font-size: 1.3rem;
-            color: #fff;
-            text-shadow: 2px 2px 0px #0984e3;
-            pointer-events: none;
-            z-index: 20;
-            animation: blinker 1.5s linear infinite;
+            box-shadow: 10px 10px 0px rgba(255, 118, 117, 0.3);
+            width: 90%;
+            max-width: 400px;
+            animation: popUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* --- 5. AREA TEKS --- */
-        .dialog-area {
-            height: 65%;
-            background: #2d3436; /* Tetap gelap biar teks kebaca jelas (Kontras) */
-            color: #dfe6e9;
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .name-tag {
-            color: #00cec9; /* Cyan Neon */
-            font-size: 1.5rem;
+        .icon {
+            font-size: 5rem;
             margin-bottom: 10px;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        h1 {
+            color: #00b894; /* Hijau Sukses */
+            font-size: 2.5rem;
+            margin: 0 0 15px 0;
             text-transform: uppercase;
             letter-spacing: 1px;
-            border-bottom: 2px dashed #00cec9;
-            padding-bottom: 5px;
-            display: inline-block;
         }
 
-        .text-box {
-            flex-grow: 1;
-            font-size: 1.4rem;
+        p {
+            font-size: 1.5rem;
             line-height: 1.4;
-            overflow-y: auto;
-            margin-bottom: 15px;
+            color: #636e72;
+            margin-bottom: 10px;
         }
 
-        /* --- 6. TOMBOL --- */
-        .controls {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
+        .highlight {
+            color: #ff7675; /* Pink */
+            font-weight: bold;
         }
 
-        .btn {
-            border: none;
-            padding: 12px 25px;
-            font-family: inherit;
-            font-size: 1.3rem;
-            cursor: pointer;
-            border-radius: 12px;
-            box-shadow: 0 5px 0 rgba(0,0,0,0.3);
-            transition: transform 0.1s;
-        }
-        .btn:active { transform: translateY(5px); box-shadow: none; }
-        
-        .btn-next { background: #ffeaa7; color: #2d3436; width: 100%; font-weight: bold; } /* Kuning Pucat */
-        .btn-success { background: #00b894; color: #fff; } /* Hijau Mint */
-        .btn-wa { background: #25D366; color: #fff; } 
-
-        /* --- 7. MUTE BUTTON --- */
-        .mute-btn {
-            position: absolute;
-            top: 15px; right: 15px;
-            background: rgba(255,255,255,0.9);
-            padding: 5px 10px;
-            border-radius: 10px;
-            cursor: pointer;
-            z-index: 50;
-            font-size: 1.5rem;
-            border: 2px solid #ff7675;
-            color: #ff7675;
+        .footer {
+            margin-top: 40px;
+            font-size: 1rem;
+            color: #b2bec3;
+            letter-spacing: 2px;
+            text-transform: lowercase;
         }
 
-        /* --- 8. LOGIN OVERLAY (GANTI WARNA) --- */
-        #login-screen {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: #ff7675; /* Coral Pink Cerah */
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: top 0.8s ease-in-out;
+        /* --- ANIMASI --- */
+        @keyframes popUp {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
-        #login-screen input {
-            padding: 10px;
-            font-family: inherit;
-            font-size: 1.5rem;
-            text-align: center;
-            margin: 20px 0;
-            border: 4px solid #fff;
-            background: rgba(255,255,255,0.2);
-            color: #fff;
-            border-radius: 10px;
-            outline: none;
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
-        #login-screen input::placeholder { color: rgba(255,255,255,0.8); }
-
-        /* --- 9. LAINNYA --- */
-        .money {
-            position: fixed;
-            top: -50px;
-            font-size: 2rem;
-            z-index: 200;
-            animation: fall linear forwards;
-        }
-
-        .spotify-btn {
-            display: inline-block;
-            margin-top: 10px;
-            background-color: #1DB954;
-            color: #fff;
-            padding: 8px 15px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 1.2rem;
-            border: 2px solid #fff;
-            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
-            transition: transform 0.1s;
-        }
-        .spotify-btn:active { transform: translateY(4px); box-shadow: none; }
     </style>
 </head>
 <body>
 
-    <audio id="bgMusic" loop>
-        <source src="lagu.mp3" type="audio/mpeg">
-    </audio>
-
-    <div id="game-device">
-        <div class="mute-btn" onclick="toggleMute()" id="muteIcon">🔇</div>
-
-        <div class="visual-area" id="visualArea">
-            <div class="cloud">☁️</div>
-            <div class="cloud" style="top: 60px; animation-delay: 5s; font-size: 2rem;">☁️</div>
-            <div class="tap-hint">Coba tangkap aku!</div>
-            
-            <div class="pixel-char" id="char" onclick="dodge(this)"></div>
-        </div>
-
-        <div class="dialog-area">
-            <div class="name-tag" id="sceneTitle">LOG: 001</div>
-            <div class="text-box" id="typewriter"></div>
-            
-            <div class="controls" id="btnContainer">
-                <button class="btn btn-next" onclick="nextScene()">LANJUT ▼</button>
-            </div>
-        </div>
-
-        <div id="login-screen">
-            <h1 style="color:#fff; font-size:3rem; text-shadow: 3px 3px 0px rgba(0,0,0,0.1);" class="main-title">INTERN-LOG</h1>
-            <h2 style="color:#fff; font-size:2rem; text-shadow: 3px 3px 0px rgba(0,0,0,0.1);" class="sub-title">The Unspoken</h2>
-            <br>
-            <br>
-            <p style="color:#fff; font-size:1.3rem;">Nama Panggilan Kamu:</p>
-            <input type="text" id="passInput" autocomplete="off" maxlength="15">
-            <button class="btn" style="background:#fff; color:#ff7675; font-weight:bold;" onclick="checkLogin()">START GAME</button>
-            <p id="errorMsg" style="color:#fff; background:#d63031; padding:5px 10px; border-radius:5px; margin-top:10px; display:none;">Kamu Bukan Orangnya!</p>
-            <br> 
-            <br> 
-            <div style="color:#fff; font-size:1rem; text-shadow: 3px 3px 0px rgba(0,0,0,0.1);" >by kala.works</div>
-
-        </div>
+    <div class="card">
+        <div class="icon">💌</div>
         
+        <h1>Sudah Tersampaikan</h1>
+        
+        <p>Orangnya udah tau<br>dan udah liat.</p>
+        
+        <br>
+        <p class="highlight">Makasih.</p>
+
+        <div class="footer">by kala.works</div>
     </div>
 
-    <script>
-        // --- DATA CERITA ---
-        const scenes = [
-            { t: "DAY 01", text: "Ingat hari pertama? Hujan deras, aku lupa bawa jas hujan. Datang dengan celana yg basah hehe... Dan kamu temen magang pertama aku" },
-            { t: "THE SENIOR", text: "Kita duduk sebelahan. Kita yg mulai obrolannya dan ternyata kamu 2 minggu lebih awal magangnya. Aku gugup, tapi berusaha santai di depan kamu." },
-            { t: "STALKER", text: "Habis inaugurasi, aku cari IG kamu walau gak tau username-nya. Akhirnya ketemu, highlightnya ada lagu Wave to Earth hahaha." },
-            { t: "DM STORY", text: "Pas kamu DM 'KM TU KPOP ENTHUSIAST KAH' (*kenapa harus UPPERCASE sih? hha), aku jawab 'Engga'. Padahal dulu iya wkwk. Itu interaksi singkat, tapi bikin aku senyum." },
-            { t: "THE SMILE", text: "Inget pas aku ditugasin dokumentasi walk in interview? Aku suka banget senyuman kamu di situ sampe aku jadiin thumbnail reels IG. Maaf ya, emang bagus momennya hehe." },
-            { t: "GUITAR", text: "Pas kamu like & respon story aku main gitar, rasanya seneng bukan main. Jarang ada cewek yang respon hobi aku se-antusias itu. (aku tuh jd ovt tau!)" },
-            { t: "CORE MEMORY", text: "Momen boncengin kamu ke training center itu singkat, tapi jadi 'Core Memory'. Cuma ngobrol di motor, tapi ya gituu." },
-            { t: "MISSED MOMENT", text: "Sebenernya waktu itu aku pengen banget kita ke Pasar Seni ITB bareng. Sayang belum kesampaian, padahal aku ngarep momen itu ada (lagi)." },
-            { t: "EFFORT", text: "Waktu kamu tanya playlist, aku bilang udah lama gak pake Spotify. Tapi akhirnya aku install ulang & update lagu khusus buat share ke kamu." },
-            { t: "PLAYLIST", text: "Aku juga buat playlist baru 'Nanti Nyanyi Bareng'. Harapannya... suatu saat aku bisa iringin kamu nyanyi pake gitar aku.",
-                link: "https://open.spotify.com/playlist/3z9pC9cVo6IvCW7pcUAP8y?si=Zp1NgR0XSVi6Cc-uUNzwdQ&nd=1&dlsi=3523ada49a3a4cab" // Ganti link ini
-             },
-            { t: "CONFESSION", text: "Fi, makasih udah ajak aku ngobrol. Dari situ aku jadi tertarik sama kamu. Magangnya kan udah kelar, aku cuma mau ungkapin ini biar lega." },
-            { t: "DISCLAIMER", text: "Aku mau ungkapin dengan caraku sendiri. Cuma pengen kamu tau aja." },
-            { t: "WISH", text: "Sehat terus ya Afi! Semoga cita-cita gaji 3 digit kamu tercapai! Aamiin! " }
-        ];
-
-        let currentStep = 0;
-        let isTyping = false;
-        const audio = document.getElementById('bgMusic');
-        const visualArea = document.getElementById('visualArea');
-
-        // --- GAMEPLAY: DODGE & COLOR CHANGE ---
-        function dodge(el) {
-            const bounds = visualArea.getBoundingClientRect();
-            const maxLeft = bounds.width - 90; 
-            const maxTop = bounds.height - 90;
-
-            const randomLeft = Math.floor(Math.random() * maxLeft);
-            const randomTop = Math.floor(Math.random() * maxTop);
-
-            // Pindah posisi
-            el.style.left = randomLeft + "px";
-            el.style.top = randomTop + "px";
-            
-            // GANTI WARNA ACAK (PALET CERIA)
-            const colors = ['#e84393', '#0984e3', '#00b894', '#fdcb6e', '#6c5ce7', '#ff7675', '#00cec9'];
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
-            
-            el.style.backgroundColor = randomColor;
-        }
-
-        // --- AUDIO CONTROL ---
-        function toggleMute() {
-            const btn = document.getElementById('muteIcon');
-            if (audio.muted) {
-                audio.muted = false;
-                btn.innerText = "🔊";
-            } else {
-                audio.muted = true;
-                btn.innerText = "🔇";
-            }
-        }
-
-        // --- LOGIN & START ---
-        function checkLogin() {
-            const input = document.getElementById('passInput').value.toLowerCase();
-            if (input.includes('afi') || input.includes('afifah')) {
-                document.getElementById('login-screen').style.top = "-110%";
-                
-                // Fade In Audio
-                audio.volume = 0;
-                audio.muted = false;
-                document.getElementById('muteIcon').innerText = "🔊";
-                audio.play();
-                
-                let vol = 0;
-                const interval = setInterval(() => {
-                    if (vol < 1.0) {
-                        vol += 0.05;
-                        audio.volume = Math.min(vol, 0.7);
-                    } else {
-                        clearInterval(interval);
-                    }
-                }, 300);
-
-                setTimeout(() => {
-                    typeWriter(scenes[0]);
-                }, 1000);
-            } else {
-                document.getElementById('errorMsg').style.display = 'block';
-            }
-        }
-
-        // --- TYPEWRITER ---
-        function nextScene() {
-            if (isTyping) return;
-            currentStep++;
-            if (currentStep < scenes.length) {
-                typeWriter(scenes[currentStep]);
-            } else {
-                showFinalButtons();
-            }
-        }
-
-        function typeWriter(sceneData) {
-            isTyping = true;
-            document.getElementById('sceneTitle').innerText = sceneData.t;
-            const textBox = document.getElementById('typewriter');
-            textBox.innerHTML = "";
-            let txt = sceneData.text;
-            let i = 0;
-            function typing() {
-                if (i < txt.length) {
-                    textBox.innerHTML += txt.charAt(i);
-                    i++;
-                    setTimeout(typing, 30);
-                } else {
-                    isTyping = false;
-                    if (sceneData.link) {
-                        textBox.innerHTML += `<br><br><a href="${sceneData.link}" target="_blank" class="spotify-btn">🎵 Buka Playlist</a>`;
-                    }
-                }
-            }
-            typing();
-        }
-
-        // --- ENDING ---
-        function showFinalButtons() {
-            const container = document.getElementById('btnContainer');
-            container.innerHTML = `
-                <button class="btn btn-wa" onclick="openWA()">💬 hmm</button>
-                <button class="btn btn-success" onclick="triggerAmin()">🤲 AAMIIN!</button>
-            `;
-            document.getElementById('sceneTitle').innerText = "THE END";
-            document.getElementById('typewriter').innerHTML = "Makasih udah baca sampai akhir. Klik Aamiin biar doa gajinya terkabul!";
-        }
-
-        function triggerAmin() {
-            for(let i=0; i<30; i++) {
-                const el = document.createElement('div');
-                el.innerText = Math.random() > 0.5 ? '💸' : '✨';
-                el.className = 'money';
-                el.style.left = Math.random() * 100 + "vw";
-                el.style.animationDuration = (Math.random() * 2 + 2) + "s";
-                document.body.appendChild(el);
-            }
-        }
-
-        function openWA() {
-            const text = "hmm ya, jd gitu fi";
-            // Ganti nomor HP di bawah
-            window.open(`https://wa.me/6285795603927?text=${encodeURIComponent(text)}`, '_blank');
-        }
-
-        // Enter key support
-        document.getElementById("passInput").addEventListener("keypress", function(event) {
-            if (event.key === "Enter") checkLogin();
-        });
-    </script>
 </body>
 </html>
