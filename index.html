@@ -3,94 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Status: Delivered</title>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-    
+    <title>Log Ended</title>
     <style>
-        /* --- STYLE SIMPEL & CERIA --- */
+        /* --- RESET & BASIC --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            background-color: #ffefc1; /* Kuning Telur Lembut */
-            font-family: 'VT323', monospace;
+            background-color: #000000; /* Hitam Pekat */
+            color: #ffffff; /* Putih */
+            font-family: 'Courier New', Courier, monospace; /* Font ala Terminal/Koding */
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0;
-            color: #2d3436;
+            overflow: hidden;
         }
 
-        .card {
-            background: #ffffff;
-            padding: 40px 30px;
-            border: 5px solid #ff7675; /* Border Pink */
-            border-radius: 20px;
+        .container {
             text-align: center;
-            box-shadow: 10px 10px 0px rgba(255, 118, 117, 0.3);
-            width: 90%;
-            max-width: 400px;
-            animation: popUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            animation: fadeIn 2s ease-in forwards; /* Muncul perlahan */
         }
 
-        .icon {
-            font-size: 5rem;
-            margin-bottom: 10px;
-            display: inline-block;
-            animation: bounce 2s infinite;
-        }
-
+        /* --- TYPOGRAPHY --- */
         h1 {
-            color: #00b894; /* Hijau Sukses */
-            font-size: 2.5rem;
-            margin: 0 0 15px 0;
+            font-size: 1.5rem;
+            font-weight: normal;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         p {
-            font-size: 1.5rem;
-            line-height: 1.4;
-            color: #636e72;
-            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: #888; /* Abu-abu biar ga terlalu kontras */
+            margin-bottom: 5px;
         }
 
-        .highlight {
-            color: #ff7675; /* Pink */
-            font-weight: bold;
-        }
-
-        .footer {
-            margin-top: 40px;
-            font-size: 1rem;
-            color: #b2bec3;
+        .signature {
+            margin-top: 60px;
+            font-size: 0.7rem;
+            color: #444;
             letter-spacing: 2px;
-            text-transform: lowercase;
         }
 
         /* --- ANIMASI --- */
-        @keyframes popUp {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+        /* Kotak kedip-kedip ala kursor komputer lama */
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            background-color: #fff;
+            vertical-align: middle;
+            margin-left: 5px;
+            animation: blink 1s infinite;
         }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        
     </style>
 </head>
-<body>
+<body > 
+<audio id="bgMusic" loop>
+        <source src="thesong.mp3" type="audio/mpeg">
+    </audio>
+    <div class="container">
+        <h1>STATUS: DELIVERED<span class="cursor"></span></h1>
+        
+        <p>21 Desember 2025, </p>
+        <p>salah satu cerita terbaikku.</p>
 
-    <div class="card">
-        <div class="icon">💌</div>
-        
-        <h1>Sudah Tersampaikan</h1>
-        
-        <p>Orangnya udah tau<br>dan udah liat.</p>
-        
-        <br>
-        <p class="highlight">Makasih.</p>
-
-        <div class="footer">by kala.works</div>
+        <div class="signature">
+            [ END OF LOG ]<br><br>
+            kala.works
+        </div>
     </div>
-
+<script>
+        // --- LOGIKA MUSIK INVISIBLE ---
+        // Musik akan nyala saat user tap layar di mana saja
+        document.body.addEventListener('click', function() {
+            var audio = document.getElementById('bgMusic');
+            if (audio.paused) {
+                audio.play();
+            }
+        }, { once: true }); // Hanya jalan sekali biar gak glitch
+    </script>
 </body>
+
+
 </html>
